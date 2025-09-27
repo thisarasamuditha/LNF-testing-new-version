@@ -8,6 +8,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -33,12 +37,32 @@ public class AuthService {
         return "User registered successfully!";
     }
 
+    // this method handles user login
+    // update this method to return specific messages for different failure cases
+
     public String login(LoginRequest request) {
-        return userRepository.findByUsername(request.getUsername())
-                .filter(user -> passwordEncoder.matches(request.getPassword(), user.getPassword()))
-                .map(user -> "Login successful!")
-                .orElse("Invalid credentials");
+        // Check for empty fields first
+        if (request.getUsername() == null || request.getUsername().trim().isEmpty() || 
+            request.getPassword() == null || request.getPassword().trim().isEmpty()) {
+            return "Username and password must not be empty";
+        }
+        
+        // Find user
+        Optional<User> userOpt = userRepository.findByUsername(request.getUsername());
+        
+        if (userOpt.isEmpty()) {
+            return "User not found";
+        }
+        
+        User user = userOpt.get();
+        if (passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            return "Login successful!";
+        }
+        
+        return "Invalid credentials";
     }
+
+    
 
     public User getUserByUsername(String username) {
         // Retrieve user by username
@@ -46,3 +70,5 @@ public class AuthService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 }
+
+

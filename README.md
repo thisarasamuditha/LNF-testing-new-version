@@ -8,4 +8,7 @@
 </dependency> -->
 ```
 
+- To run the LoginUITest 
+```
 cd "f:\sem 4 mine\QA\project\LNF testing\LNF"; mvn test -Dtest=AuthServiceTest
+```

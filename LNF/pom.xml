@@ -79,9 +79,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.30</version>  <!-- Make sure the version matches your requirements -->
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 
     <!-- Cucumber -->
@@ -100,11 +100,11 @@
     </dependency>
 
     <!-- JUnit 4 (for Cucumber compatibility) -->
-    <!-- <dependency>
+    <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <scope>test</scope>
-    </dependency> -->
+    </dependency>
 
 	<!-- for selenium -->
 	 <dependency>
@@ -113,17 +113,22 @@
         <version>4.24.0</version>
     </dependency>
 
-    <!-- JUnit 5 -->
+    <!-- JUnit 5 (Use Spring Boot managed versions) -->
     <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-api</artifactId>
-        <version>5.10.2</version>
         <scope>test</scope>
     </dependency>
     <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-engine</artifactId>
-        <version>5.10.2</version>
+        <scope>test</scope>
+    </dependency>
+
+    <!-- JUnit Vintage Engine (to run JUnit 4 tests with JUnit 5) -->
+    <dependency>
+        <groupId>org.junit.vintage</groupId>
+        <artifactId>junit-vintage-engine</artifactId>
         <scope>test</scope>
     </dependency>
 

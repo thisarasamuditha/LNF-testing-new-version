@@ -3,6 +3,8 @@ package com.thisara.LNF.ui;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.TimeoutException;
 
 import java.time.Duration;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,27 +22,36 @@ public class LoginUITest {
     }
 
     @Test
-    void testLoginWithValidCredentials() throws InterruptedException {
+    void testLoginWithValidCredentials() {
         driver.get("http://localhost:5173/signin");
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         WebElement usernameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("username")));
         usernameField.sendKeys("thisara");
+        
 
         WebElement passwordField = driver.findElement(By.id("password"));
         passwordField.sendKeys("1234");
 
         WebElement loginBtn = driver.findElement(By.id("loginBtn"));
         loginBtn.click();
-        Thread.sleep(500); // brief pause before click
 
-        // Optional: wait a bit to observe navigation
-        Thread.sleep(1000);
+        // Handle success alert if it appears
+        WebDriverWait shortWait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        try {
+            Alert alert = shortWait.until(ExpectedConditions.alertIsPresent());
+            // Optionally assert alert text
+            // Assertions.assertEquals("Login successful!", alert.getText());
+            alert.accept();
+        } catch (TimeoutException ignored) {
+            // No alert appeared; proceed
+        }
 
         // Assert redirected to dashboard
-        wait.until(ExpectedConditions.urlContains("/"));
-        assertTrue(driver.getCurrentUrl().contains("/"));
+    wait.until(ExpectedConditions.urlToBe("http://localhost:5173/"));
+    assertTrue(driver.getCurrentUrl().equals("http://localhost:5173/"),
+        () -> "Expected redirect to index '/', but was: " + driver.getCurrentUrl());
     }
 
     @AfterEach

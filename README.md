@@ -1,4 +1,4 @@
-- For cucumber it uses Junit 4. When i want to teat cucumber uncomment
+- For cucumber it uses Junit 4. When i want to test cucumber uncomment
 
 ```
 <!-- <dependency>

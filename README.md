@@ -12,3 +12,8 @@
 ```
 cd "f:\sem 4 mine\QA\project\LNF testing\LNF"; mvn test -Dtest=AuthServiceTest
 ```
+
+- To run the PostItemUITest
+```
+mvn -q -Dtest=PostItemUITest test
+```

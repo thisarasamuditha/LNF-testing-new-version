@@ -7,3 +7,5 @@
     <scope>test</scope>
 </dependency> -->
 ```
+
+cd "f:\sem 4 mine\QA\project\LNF testing\LNF"; mvn test -Dtest=AuthServiceTest

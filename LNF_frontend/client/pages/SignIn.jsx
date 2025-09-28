@@ -70,6 +70,7 @@ export default function SignIn() {
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
+            id="username"
             type="text"
             placeholder="Username"
             value={username}
@@ -78,6 +79,7 @@ export default function SignIn() {
             className="focus:border-blue-500 focus:ring-blue-500"
           />
           <Input
+            id="password"
             type="password"
             placeholder="Password"
             value={password}
@@ -86,6 +88,7 @@ export default function SignIn() {
             className="focus:border-green-500 focus:ring-green-500"
           />
           <Button
+            id="loginBtn"
             type="submit"
             className="w-full bg-gradient-to-r from-blue-600 to-green-600 text-white font-semibold hover:from-blue-700 hover:to-green-700 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
             disabled={loading}

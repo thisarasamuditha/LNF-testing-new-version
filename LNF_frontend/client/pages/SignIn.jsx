@@ -42,7 +42,10 @@ export default function SignIn() {
         // Save user data to localStorage
         localStorage.setItem("user", JSON.stringify(userData));
 
-                                // Set authentication status
+        console.log("User id:", userData.id);
+        console.log("User name:", userData.username); // This will log the user ID (19 in this case)
+        console.log("User email:", userData.email);
+        // Set authentication status
         setIsAuthenticated(true);
 
         alert(data.message || "Login successful!");

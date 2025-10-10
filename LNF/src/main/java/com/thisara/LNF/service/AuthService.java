@@ -42,27 +42,25 @@ public class AuthService {
 
     public String login(LoginRequest request) {
         // Check for empty fields first
-        if (request.getUsername() == null || request.getUsername().trim().isEmpty() || 
+        if (request.getUsername() == null || request.getUsername().trim().isEmpty() ||
             request.getPassword() == null || request.getPassword().trim().isEmpty()) {
             return "Username and password must not be empty";
         }
-        
+
         // Find user
         Optional<User> userOpt = userRepository.findByUsername(request.getUsername());
-        
+
         if (userOpt.isEmpty()) {
             return "User not found";
         }
-        
+
         User user = userOpt.get();
         if (passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             return "Login successful!";
         }
-        
+
         return "Invalid credentials";
     }
-
-    
 
     public User getUserByUsername(String username) {
         // Retrieve user by username

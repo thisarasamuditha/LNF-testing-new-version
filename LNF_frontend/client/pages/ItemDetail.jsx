@@ -27,7 +27,7 @@ export default function ItemDetail() {
       try {
         setLoading(true);
         const API_BASE_URL =
-          import.meta.env.VITE_API_URL || "http://localhost:8088";
+          import.meta.env.VITE_API_URL || "http://localhost:8080";
         const response = await axios.get(`${API_BASE_URL}/api/items/${id}`);
         setItem(response.data);
         setError("");

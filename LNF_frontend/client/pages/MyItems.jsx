@@ -77,7 +77,7 @@ export default function MyItems() {
 
         // Fetch user's items from the backend API
         const API_BASE_URL =
-          import.meta.env.VITE_API_URL || "http://localhost:8088";
+          import.meta.env.VITE_API_URL || "http://localhost:8080";
         const response = await axios.get(
           `${API_BASE_URL}/api/items/user/${user.id}`,
         );
@@ -171,7 +171,7 @@ export default function MyItems() {
       };
 
       const API_BASE_URL =
-        import.meta.env.VITE_API_URL || "http://localhost:8088";
+        import.meta.env.VITE_API_URL || "http://localhost:8080";
 
       // Make PUT request to update item
       const response = await axios.put(
@@ -221,7 +221,7 @@ export default function MyItems() {
 
       // Call DELETE API endpoint
       const API_BASE_URL =
-        import.meta.env.VITE_API_URL || "http://localhost:8088";
+        import.meta.env.VITE_API_URL || "http://localhost:8080";
       await axios.delete(`${API_BASE_URL}/api/items/${itemId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

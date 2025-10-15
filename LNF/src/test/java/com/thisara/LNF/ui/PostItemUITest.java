@@ -29,12 +29,12 @@ public class PostItemUITest {
         boolean backendUp = false;
         try {
             backendUp = (Boolean) ((JavascriptExecutor) driver).executeScript(
-                "return fetch('http://localhost:8088/api/auth/login', {method:'OPTIONS'}).then(()=>true).catch(()=>false);"
+                "return fetch('http://localhost:8080/api/auth/login', {method:'OPTIONS'}).then(()=>true).catch(()=>false);"
             );
         } catch (Exception ignored) {}
 
         // 1. Login (protected route requires auth) if backend is up, else inject fake user
-        driver.get("http://localhost:5173/signin");
+        driver.get("http://localhost:3000/signin");
         WebElement usernameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("username")));
         slowType(usernameField, "thisara");
         WebElement passwordField = driver.findElement(By.id("password"));
@@ -69,7 +69,7 @@ public class PostItemUITest {
         }
 
         // 2. Go to report lost page
-        driver.get("http://localhost:5173/report-lost");
+        driver.get("http://localhost:3000/report-lost");
 
         // 3. Fill the form (using name attributes from ReportLost.jsx)
         WebElement titleInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("title")));

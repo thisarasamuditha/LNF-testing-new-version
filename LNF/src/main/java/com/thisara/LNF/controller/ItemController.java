@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"}) // allow React frontend
 @RequiredArgsConstructor
 @RequestMapping("/api/items")
 public class ItemController {
@@ -58,7 +59,5 @@ public class ItemController {
         itemService.deleteItem(id);
         return ResponseEntity.noContent().build();
     }
-
-
 
 }

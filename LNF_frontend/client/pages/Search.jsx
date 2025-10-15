@@ -36,7 +36,9 @@ export default function SearchPage() {
       try {
         setLoading(true);
         const API_BASE_URL =
-          import.meta.env.VITE_API_URL || "http://localhost:8088";
+          import.meta.env.VITE_API_URL || "http://localhost:8080";
+        console.log("Search API_BASE_URL:", API_BASE_URL);
+        console.log("Search making request to:", `${API_BASE_URL}/api/items`);
         const response = await axios.get(`${API_BASE_URL}/api/items`);
         setItems(response.data);
         setError("");

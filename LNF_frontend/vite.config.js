@@ -9,8 +9,15 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig(({ mode }) => ({
   server: {
-    host: "::",
-    port: 5173,
+    // Bind to IPv4 localhost and a non-conflicting port to avoid EACCES on ::1:5173
+    host: "127.0.0.1",
+    port: 3000,
+    strictPort: false,
+    hmr: {
+      protocol: "ws",
+      host: "127.0.0.1",
+      port: 3000,
+    },
     fs: {
       allow: ["./client", "./shared"],
       deny: ["*.{crt,pem}", "**/.git/**", "server/**"],

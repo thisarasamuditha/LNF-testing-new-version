@@ -23,7 +23,7 @@ public class LoginUITest {
 
     @Test
     void testLoginWithValidCredentials() {
-        driver.get("http://localhost:5173/signin");
+        driver.get("http://localhost:3000/signin");
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -49,8 +49,8 @@ public class LoginUITest {
         }
 
         // Assert redirected to dashboard
-    wait.until(ExpectedConditions.urlToBe("http://localhost:5173/"));
-    assertTrue(driver.getCurrentUrl().equals("http://localhost:5173/"),
+    wait.until(ExpectedConditions.urlToBe("http://localhost:3000/"));
+    assertTrue(driver.getCurrentUrl().equals("http://localhost:3000/"),
         () -> "Expected redirect to index '/', but was: " + driver.getCurrentUrl());
     }
 

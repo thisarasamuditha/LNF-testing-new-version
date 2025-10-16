@@ -38,7 +38,7 @@ class AuthServiceTest {
         user.setPassword("encodedPassword123"); // This should be encoded password
 
         LoginRequest request = new LoginRequest();
-        request.setUsername("thisara");
+        request.setUsername("thisaraS");
         request.setPassword("password123"); // Raw password from user input
 
         when(userRepository.findByUsername("thisara")).thenReturn(Optional.of(user));
@@ -62,7 +62,7 @@ class AuthServiceTest {
 
         LoginRequest request = new LoginRequest();
         request.setUsername("thisara");
-        request.setPassword("wrongPass");
+        request.setPassword("123");
 
         when(userRepository.findByUsername("thisara")).thenReturn(Optional.of(user));
         when(passwordEncoder.matches("wrongPass", "encodedPassword123")).thenReturn(false);
@@ -80,7 +80,7 @@ class AuthServiceTest {
     void testLoginWithNonExistingUser() {
         // Arrange
         LoginRequest request = new LoginRequest();
-        request.setUsername("unknown");
+        request.setUsername("unknownh");
         request.setPassword("password123");
 
         when(userRepository.findByUsername("unknown")).thenReturn(Optional.empty());
@@ -98,8 +98,8 @@ class AuthServiceTest {
     void testLoginWithMissingFields() {
         // Arrange
         LoginRequest request = new LoginRequest();
-        request.setUsername("");
-        request.setPassword("");
+        request.setUsername("khu");
+        request.setPassword("nv ");
 
         // Act
         String result = authService.login(request);
